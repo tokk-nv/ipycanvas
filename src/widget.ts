@@ -49,6 +49,7 @@ class CanvasModel extends DOMWidgetModel {
       height: 500,
       sync_image_data: false,
       image_data: null,
+      value: new DataView(new ArrayBuffer(0))     
     };
   }
 
@@ -57,6 +58,9 @@ class CanvasModel extends DOMWidgetModel {
     image_data: {
       serialize: serializeImageData,
       deserialize: deserializeImageData
+    },
+    value: {serialize: (value, manager) => {
+            return new DataView(value.buffer.slice(0));
     }
   }
 
